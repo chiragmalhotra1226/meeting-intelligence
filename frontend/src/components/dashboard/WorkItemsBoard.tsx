@@ -44,7 +44,7 @@ function formatExport(task: ActionItem, format: ExportFormat): string {
   return `${desc}\n\nAssigned: ${assignee}\nDeadline: ${dl}\nPriority: ${priority}\n\n---\nAuto-extracted by Meeting Intelligence`
 }
 
-export default function WorkItemsBoard({ items, token }: { items: ActionItem[]; token: string }) {
+export default function WorkItemsBoard({ items }: { items: ActionItem[]; token?: string }) {
   const { dark } = useTheme()
   const [tasks, setTasks] = useState<(ActionItem & { status: string })[]>(
     items.map(t => ({ ...t, status: t.status || 'pending' }))

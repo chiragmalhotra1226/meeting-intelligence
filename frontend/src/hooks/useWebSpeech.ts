@@ -16,7 +16,7 @@ interface UseWebSpeechOptions {
   flushInterval?: number
 }
 
-export function useWebSpeech({ sessionId, token, wsUrl, flushInterval = 12000 }: UseWebSpeechOptions) {
+export function useWebSpeech({ sessionId, token, flushInterval = 12000 }: UseWebSpeechOptions) {
   const [isRecording, setIsRecording] = useState(false)
   const [transcript, setTranscript] = useState<TranscriptChunk[]>([])
   const [interimText, setInterimText] = useState('')

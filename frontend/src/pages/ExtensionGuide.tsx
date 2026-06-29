@@ -6,7 +6,7 @@ import Sidebar from '@/components/dashboard/Sidebar'
 
 
 export default function ExtensionGuide() {
-  const { dark, toggle } = useTheme()
+  const { dark } = useTheme()
   const navigate = useNavigate()
 
   const steps = [

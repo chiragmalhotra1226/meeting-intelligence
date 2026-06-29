@@ -4,7 +4,7 @@ import { useSupabaseAuth } from '@/hooks/useSupabaseAuth'
 import { useTheme } from '@/App'
 import { Lock } from 'lucide-react'
 import {
-  Mic, Brain, Clock,  ArrowLeft, FileText,
+  Brain, ArrowLeft, FileText,
   Activity, BarChart3,
 } from 'lucide-react'
 import HarvesterConsole from '@/components/dashboard/HarvesterConsole'
@@ -18,14 +18,14 @@ import Sidebar from '@/components/dashboard/Sidebar'
 type Tab = 'record' | 'history' | 'brain' | 'analytics'
 
 export default function Dashboard() {
-  const { user, session, signOut } = useSupabaseAuth()
-  const { dark, toggle } = useTheme()
+  const { session } = useSupabaseAuth()
+  const { dark } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
   const [tab, setTab] = useState<Tab>('record')
   const [meetings, setMeetings] = useState<any[]>([])
   const [selectedMeeting, setSelectedMeeting] = useState<any>(null)
-  const [loadingMeetings, setLoadingMeetings] = useState(true)
+  const [, setLoadingMeetings] = useState(true)
   const [viewMode, setViewMode] = useState<'live' | 'archive'>('live')
 
   const token = session?.access_token || 'demo-token'
@@ -75,14 +75,6 @@ export default function Dashboard() {
     }
   }
 
-  const analyzedCount = meetings.filter(m => m.status === 'analyzed').length
-
-  const navItems: { id: Tab; icon: any; label: string }[] = [
-    { id: 'record', icon: Mic, label: 'Live Capture' },
-    { id: 'history', icon: Clock, label: 'History' },
-    { id: 'brain', icon: Brain, label: 'AI Search' },
-    { id: 'analytics', icon: BarChart3, label: 'Analytics' },
-  ]
   const DEMO_SESSIONS = [
   {
     id: '1',

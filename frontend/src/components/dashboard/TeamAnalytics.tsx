@@ -51,7 +51,7 @@ function safeDate(d: string): string {
   }
 }
 
-export default function TeamAnalytics({ token, meetings }: { token: string; meetings: any[] }) {
+export default function TeamAnalytics({ meetings }: { token?: string; meetings: any[] }) {
   const { dark } = useTheme()
 
   const analyzedMeetings = meetings.filter(m => m.status === 'analyzed')

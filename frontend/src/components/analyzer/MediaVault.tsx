@@ -5,7 +5,7 @@ import { useTheme } from '@/App'
 
 interface Props { token: string; onAnalysisComplete: (result: any) => void }
 
-export default function MediaVault({ token, onAnalysisComplete }: Props) {
+export default function MediaVault({ onAnalysisComplete }: Props) {
   const navigate = useNavigate()
   const { dark } = useTheme()
   const [dragging, setDragging] = useState(false)
