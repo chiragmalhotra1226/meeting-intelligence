@@ -4,13 +4,10 @@ import { useSupabaseAuth } from '@/hooks/useSupabaseAuth'
 import { useTheme } from '@/App'
 import { Lock } from 'lucide-react'
 import {
-  Mic, Brain, FileVideo, LogOut, Sun, Moon,
-  ChevronRight, Clock, Sparkles, ArrowLeft, FileText,
-  Activity, BarChart3, Home, Download,
+  Mic, Brain, Clock,  ArrowLeft, FileText,
+  Activity, BarChart3,
 } from 'lucide-react'
 import HarvesterConsole from '@/components/dashboard/HarvesterConsole'
-import TimelineMap from '@/components/dashboard/TimelineMap'
-import WorkItemsBoard from '@/components/dashboard/WorkItemsBoard'
 import BrainChat from '@/components/dashboard/BrainChat'
 import TeamAnalytics from '@/components/dashboard/TeamAnalytics'
 import CoachingReport from '@/components/analyzer/CoachingReport'
