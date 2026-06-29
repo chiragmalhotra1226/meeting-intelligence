@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@/App'
-import { Check, Sparkles, ArrowRight, Shield, Zap, Activity } from 'lucide-react'
+import { Check, Sparkles, ArrowRight } from 'lucide-react'
 
 export default function PricingPage() {
   const navigate = useNavigate()

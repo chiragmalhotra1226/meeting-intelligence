@@ -1,6 +1,6 @@
 import { useTheme } from '@/App'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Download, Globe, Shield, Mic, Home, Sparkles, LogOut, Sun, Moon, FileVideo, ChevronRight, Clock, Brain, BarChart3 } from 'lucide-react'
+import { ArrowLeft, Download, Globe, Shield, Mic } from 'lucide-react'
 // removed unused auth hook; Sidebar handles auth actions
 import Sidebar from '@/components/dashboard/Sidebar'
 

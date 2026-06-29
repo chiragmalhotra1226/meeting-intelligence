@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@/App'
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth'
-import { Sparkles, Mic, Brain, ShieldAlert, Zap, ArrowRight, Activity, Sun, Moon, CreditCard, Share2, UserCheck } from 'lucide-react'
+import { Sparkles, Mic, Brain, ShieldAlert, Zap, ArrowRight, Sun, Moon, CreditCard, Share2, UserCheck } from 'lucide-react'
 export default function LandingPage() {
   const navigate = useNavigate()
   const { dark, toggle } = useTheme()

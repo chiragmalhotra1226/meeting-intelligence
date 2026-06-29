@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CheckCircle2, Clock, ArrowRight, Copy, Check, Upload, ExternalLink } from 'lucide-react'
+import { CheckCircle2, Clock, ArrowRight, Check, Upload, ExternalLink } from 'lucide-react'
 import { useTheme } from '@/App'
 
 interface ActionItem {

@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from 'react'
 import { useWebSpeech } from '@/hooks/useWebSpeech'
 import { apiFetch, formatTime } from '@/lib/utils'
 import {
-  Mic, Square, Loader2, Wand2, BarChart3, Users, Brain, Hash,
-  Gauge, Volume2, Monitor, Headphones, Info, Zap, Clock, Target,
-  CheckCircle2, AlertCircle, Radio, Wifi, Shield,
+  Mic, Square, Loader2, Wand2, Users, Brain, Hash,
+  Gauge, Volume2, Monitor, Zap, Clock, Target,
+   Radio, Wifi, Shield,
 } from 'lucide-react'
 import { useTheme } from '@/App'
 import { useNavigate } from 'react-router-dom';

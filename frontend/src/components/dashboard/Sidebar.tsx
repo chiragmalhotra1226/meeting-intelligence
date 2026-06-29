@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Mic, Clock, Brain, BarChart3, FileVideo, Lock, LogOut, Sun, Moon, Sparkles, Share2, UserCheck } from 'lucide-react';
+import { Home, Mic, Clock, Brain, BarChart3, FileVideo, Lock, LogOut, Sun, Moon, Sparkles } from 'lucide-react';
 import { useTheme } from '@/App';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 
