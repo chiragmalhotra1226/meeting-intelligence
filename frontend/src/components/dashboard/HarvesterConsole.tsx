@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useWebSpeech } from '@/hooks/useWebSpeech'
 import { apiFetch, formatTime } from '@/lib/utils'
 import {
@@ -23,7 +23,6 @@ export default function HarvesterConsole({ token, onSessionComplete }: Props) {
   const [analyzing, setAnalyzing] = useState(false)
   const [elapsed, setElapsed] = useState(0)
   const [captureMode, setCaptureMode] = useState<CaptureMode>('microphone')
-  const [showTips, setShowTips] = useState(false)
   const timerRef = useRef<number | null>(null)
   const navigate = useNavigate();
 

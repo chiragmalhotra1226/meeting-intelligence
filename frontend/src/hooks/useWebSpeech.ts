@@ -27,7 +27,6 @@ export function useWebSpeech({ sessionId, token, wsUrl, flushInterval = 12000 }:
   const [volumeLevel, setVolumeLevel] = useState(0)
 
   const recognitionRef = useRef<any>(null)
-  const wsRef = useRef<WebSocket | null>(null)
   const bufferRef = useRef<TranscriptChunk[]>([])
   const startTimeRef = useRef<number>(0)
   const flushTimerRef = useRef<number | null>(null)

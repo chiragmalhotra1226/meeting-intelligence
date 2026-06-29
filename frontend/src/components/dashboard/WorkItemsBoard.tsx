@@ -50,7 +50,6 @@ export default function WorkItemsBoard({ items, token }: { items: ActionItem[]; 
     items.map(t => ({ ...t, status: t.status || 'pending' }))
   )
   const [copied, setCopied] = useState<string | null>(null)
-  const [exportingId, setExportingId] = useState<string | null>(null)
   const [showExportMenu, setShowExportMenu] = useState<string | null>(null)
 
   if (!tasks.length) return null
