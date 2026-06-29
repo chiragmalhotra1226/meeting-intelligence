@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container" id="app">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">MI</div>
+        <span class="logo-text">Meeting Intelligence</span>
+      </div>
+    </div>
+
+    <!-- Login prompt (shown when not connected) -->
+    <div id="login-section" class="section" style="display:none;">
+      <div class="status-card warning">
+        <span class="status-icon">🔑</span>
+        <div>
+          <p class="status-title">Not Connected</p>
+          <p class="status-desc">Open Meeting Intelligence and sign in first</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btn-open-app">Open Meeting Intelligence</button>
+      <div class="token-input-group">
+        <input type="text" id="token-input" placeholder="Or paste access token manually" class="input">
+        <button class="btn btn-small" id="btn-save-token">Save</button>
+      </div>
+    </div>
+
+    <!-- Ready state -->
+    <div id="ready-section" class="section" style="display:none;">
+      <!-- Meeting detection -->
+      <div id="meeting-detected" class="status-card success" style="display:none;">
+        <span class="status-icon">📹</span>
+        <div>
+          <p class="status-title" id="meeting-name">Meeting Detected</p>
+          <p class="status-desc">Ready to capture audio from this tab</p>
+        </div>
+      </div>
+
+      <div id="no-meeting" class="status-card neutral">
+        <span class="status-icon">👋</span>
+        <div>
+          <p class="status-title">Ready to Capture</p>
+          <p class="status-desc">Open a Zoom, Google Meet, or Teams call and click Record</p>
+        </div>
+      </div>
+
+      <button class="btn btn-record" id="btn-start">
+        <span class="record-dot"></span>
+        Start Recording
+      </button>
+
+      <div class="supported">
+        <p class="supported-title">Supported Platforms</p>
+        <div class="platforms">
+          <span class="platform-tag">Google Meet</span>
+          <span class="platform-tag">Zoom</span>
+          <span class="platform-tag">MS Teams</span>
+          <span class="platform-tag">Any Tab</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recording state -->
+    <div id="recording-section" class="section" style="display:none;">
+      <div class="recording-header">
+        <div class="rec-indicator">
+          <span class="rec-dot-animated"></span>
+          <span class="rec-label">RECORDING</span>
+        </div>
+        <span class="rec-timer" id="rec-timer">0:00</span>
+      </div>
+
+      <!-- Live stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-words">0</span>
+          <span class="stat-label">Words</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-chunks">0</span>
+          <span class="stat-label">Segments</span>
+        </div>
+      </div>
+
+      <!-- Live transcript preview -->
+      <div class="transcript-preview" id="transcript-preview">
+        <p class="transcript-placeholder">Waiting for speech...</p>
+      </div>
+
+      <button class="btn btn-stop" id="btn-stop">
+        ■ Stop & Analyze
+      </button>
+    </div>
+
+    <!-- Done state -->
+    <div id="done-section" class="section" style="display:none;">
+      <div class="status-card success">
+        <span class="status-icon">✅</span>
+        <div>
+          <p class="status-title">Capture Complete</p>
+          <p class="status-desc">AI analysis is processing. Check your dashboard.</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btn-open-dashboard">Open Dashboard</button>
+      <button class="btn btn-secondary" id="btn-new-session">New Recording</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase Frontend Key Test</title>
+</head>
+<body style="font-family: sans-serif; background: #121212; color: white; padding: 40px;">
+
+    <h2>🧪 Testing Supabase Frontend Credentials</h2>
+    <div id="status" style="padding: 15px; border-radius: 5px; background: #222; display: inline-block;">
+        🔄 Connecting to Supabase...
+    </div>
+
+    <script type="module">
+        // Import the official Supabase browser client from a CDN
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        // ⚠️ REPLACE THESE WITH YOUR ACTUAL KEYS:
+        const SUPABASE_URL = "https://qaftflusrdngqbzplzkk.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhZnRmbHVzcmRuZ3FienBsemtrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NDkwMTMsImV4cCI6MjA5ODIyNTAxM30.DrHfXLRcaBePFmTQBWuksF-ycuZGO9_64p7NbxiZjmI";
+
+        const statusDiv = document.getElementById('status');
+
+        try {
+            // Initialize client
+            const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            
+            // Attempt an unauthenticated metadata ping
+            const { data, error } = await supabase.from('_auth_health_check_dummy').select('*').limit(1);
+            
+            // A 404 or bad table error is actually a SUCCESS here because it means 
+            // the server responded and evaluated our API key without a 401/403 unauthorized crash.
+            if (error && (error.message.includes("apiKey") || error.code === "PGRST301")) {
+                statusDiv.innerHTML = "❌ Connection Rejected: Invalid Anon API Key.";
+                statusDiv.style.background = "#5c1d1d";
+            } else {
+                statusDiv.innerHTML = "✅ Success! The frontend key is valid and connected to Supabase.";
+                statusDiv.style.background = "#1d5c22";
+            }
+        } catch (err) {
+            statusDiv.innerHTML = "❌ Critical Error: " + err.message;
+            statusDiv.style.background = "#5c1d1d";
+        }
+    </script>
+</body>
+</html>

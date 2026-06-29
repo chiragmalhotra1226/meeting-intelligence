@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Auth Handshake Test</title>
+</head>
+<body style="font-family: sans-serif; background: #121212; color: white; padding: 40px; text-align: center;">
+
+    <h2>🧪 Google OAuth Handshake Verification</h2>
+    <p>Click the button below to test if your Supabase-to-Google Cloud link is correct.</p>
+    
+    <button id="loginBtn" style="padding: 12px 24px; font-weight: bold; background: #4285F4; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Test Google Redirection
+    </button>
+
+    <div id="status" style="margin-top: 20px; color: #aaa;"></div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        // ⚠️ REPLACE WITH YOUR PROJECT VALUES
+        const SUPABASE_URL = "https://qaftflusrdngqbzplzkk.supabase.co";
+        const SUPABASE_ANON_KEY = "YOUR_VITE_SUPABASE_ANON_KEY_HERE";
+
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('loginBtn').addEventListener('click', async () => {
+            document.getElementById('status').innerText = "🔄 Contacting Supabase auth server...";
+            
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
+            });
+
+            if (error) {
+                document.getElementById('status').innerText = "❌ Supabase Error: " + error.message;
+                document.getElementById('status').style.color = "#ff4a4a";
+            }
+        });
+    </script>
+</body>
+</html>
