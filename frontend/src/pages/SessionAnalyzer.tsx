@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth'
 import { useTheme } from '@/App'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Menu } from 'lucide-react'
 import MediaVault from '@/components/analyzer/MediaVault'
 import CoachingReport from '@/components/analyzer/CoachingReport'
 import Sidebar from '@/components/dashboard/Sidebar'
@@ -11,17 +11,25 @@ export default function SessionAnalyzer() {
   const { session } = useSupabaseAuth()
   const { dark } = useTheme()
   const navigate = useNavigate()
-  
-  // Initialize with null or mock data for testing
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   const [analysisResult, setAnalysisResult] = useState<any>(null)
   const token = session?.access_token || 'demo-token'
 
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', background: dark ? '#0f172a' : '#f8fafc' }}>
-      <Sidebar />
-      
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflowY: 'auto' }}>
-        
+
+        {/* Mobile top bar */}
+        <div className="mobile-topbar" style={{ background: dark ? 'rgba(15,23,42,0.9)' : 'rgba(248,250,252,0.9)' }}>
+          <button onClick={() => setSidebarOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
+            <Menu size={22} color={dark ? '#94a3b8' : '#334155'} />
+          </button>
+          <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 700, color: '#00f0ff' }}>Session Analyzer</span>
+        </div>
+
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 24 }}>
           <button onClick={() => navigate('/dashboard')} className="glass-card" style={{ width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer' }}>

@@ -207,6 +207,34 @@ html { scroll-behavior: smooth; }
   .mobile-menu-btn {
     display: flex !important;
   }
+
+  /* Mobile sticky top bar */
+  .mobile-topbar {
+    display: flex !important;
+  }
+
+  /* Dashboard content header wraps on mobile */
+  .dash-header {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  .dash-header h1 {
+    font-size: 18px !important;
+  }
+}
+
+.mobile-topbar {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
 }
 
 /* ── Blobs ───────────────────────────────────── */

@@ -9,7 +9,7 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
-export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { dark, toggle } = useTheme();

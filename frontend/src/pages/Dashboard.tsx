@@ -122,29 +122,27 @@ export default function Dashboard() {
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* ── Main Workspace ─────────────────────── */}
-      <main style={{ flex: 1, overflowY: 'auto', padding: 24, backgroundColor: dark ? '#06060c' : '#f8fafc' }}>
+      <main style={{ flex: 1, overflowY: 'auto', backgroundColor: dark ? '#06060c' : '#f8fafc', display: 'flex', flexDirection: 'column' }}>
 
-        {/* Hamburger — mobile only */}
-        <button
-          onClick={() => setSidebarOpen(true)}
-          style={{
-            display: 'none',
-            position: 'fixed', top: 16, left: 16, zIndex: 30,
-            background: dark ? 'rgba(255,255,255,0.08)' : '#ffffff',
-            border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-            borderRadius: 10, padding: '8px 10px', cursor: 'pointer',
-          }}
-          className="mobile-menu-btn"
-        >
-          <Menu size={20} color={dark ? '#94a3b8' : '#334155'} />
-        </button>
+        {/* Mobile top bar — hidden on desktop */}
+        <div className="mobile-topbar" style={{ background: dark ? 'rgba(6,6,12,0.9)' : 'rgba(248,250,252,0.9)' }}>
+          <button
+            onClick={() => setSidebarOpen(true)}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}
+          >
+            <Menu size={22} color={dark ? '#94a3b8' : '#334155'} />
+          </button>
+          <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 700, color: '#00f0ff' }}>MI</span>
+        </div>
+
+        <div style={{ flex: 1, padding: 24 }}>
 
         {/* ── LIVE / ARCHIVE CAPTURE ───────────────────── */}
         {tab === 'record' && (
           <div className="animate-slide-up" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
 
             {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="dash-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 24, fontWeight: 700, color: '#00f0ff' }}>
                 {viewMode === 'live' ? 'Live Capture Workspace' : `📂 ${selectedMeeting?.title || 'Meeting Archive'}`}
               </h1>
@@ -314,6 +312,7 @@ export default function Dashboard() {
             <TeamAnalytics token={token} meetings={meetings && meetings.length ? meetings : DEMO_SESSIONS} />
           </div>
         )}
+        </div>
       </main>
     </div>
   )
