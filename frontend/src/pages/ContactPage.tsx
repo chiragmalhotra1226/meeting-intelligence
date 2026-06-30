@@ -47,7 +47,7 @@ export default function ContactPage() {
       justifyContent: 'center',
       padding: '40px 20px'
     }}>
-      <div style={{
+      <div className="contact-card" style={{
         background: cardBg,
         border: `1px solid ${borderColor}`,
         borderRadius: '16px',
@@ -78,7 +78,7 @@ export default function ContactPage() {
               </div>
 
               {/* Row 2: Company Name & Phone */}
-              <div style={{ display: 'flex', gap: '16px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', gap: '16px' }}>
                 <div style={{ flex: 1 }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 500, marginBottom: '6px' }}>Company Name</label>
                   <input 
@@ -98,7 +98,7 @@ export default function ContactPage() {
               </div>
 
               {/* Row 3: Team Size & Use Case (Dropdowns) */}
-              <div style={{ display: 'flex', gap: '16px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', gap: '16px' }}>
                 <div style={{ flex: 1 }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 500, marginBottom: '6px' }}>Expected Workspace Size</label>
                   <select 
@@ -130,7 +130,7 @@ export default function ContactPage() {
               </div>
 
               {/* Row 4: City & State */}
-              <div style={{ display: 'flex', gap: '16px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', gap: '16px' }}>
                 <div style={{ flex: 1 }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 500, marginBottom: '6px' }}>City</label>
                   <input 

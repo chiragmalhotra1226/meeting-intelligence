@@ -18,6 +18,7 @@ export default function Login() {
 
   return (
     <div
+      className="page-enter"
       style={{
         display: 'flex',
         alignItems: 'center',

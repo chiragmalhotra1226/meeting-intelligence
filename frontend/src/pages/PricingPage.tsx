@@ -66,7 +66,7 @@ export default function PricingPage() {
   const cardBg = dark ? 'rgba(255,255,255,0.02)' : '#ffffff'
 
   return (
-    <div style={{
+    <div className="page-enter pricing-page" style={{
       minHeight: '100vh',
       backgroundColor: bgColor,
       color: textColor,
@@ -107,7 +107,7 @@ export default function PricingPage() {
       </div>
 
       {/* Tiers Layout Grid */}
-      <div style={{
+      <div className="pricing-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '32px',

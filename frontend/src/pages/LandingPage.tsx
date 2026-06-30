@@ -73,7 +73,7 @@ export default function LandingPage() {
   const cardBg = dark ? 'rgba(255,255,255,0.01)' : '#ffffff'
 
   return (
-    <div style={{
+    <div className="page-enter" style={{
       minHeight: '100vh',
       backgroundColor: bgColor,
       color: textColor,
@@ -97,7 +97,7 @@ export default function LandingPage() {
       )}
 
       {/* ── HEADER ────────────────────────────────────────── */}
-      <header style={{
+      <header className="landing-header" style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: '24px 8%', borderBottom: `1px solid ${borderColor}`,
         minHeight: '85px'
@@ -137,12 +137,13 @@ export default function LandingPage() {
           }}>
             <Sparkles size={18} color="#fff" />
           </div>
-          <span style={{ 
-            fontFamily: "'Syne', sans-serif", 
-            fontSize: 22, 
-            fontWeight: 800, 
-            letterSpacing: '-0.5px', 
-            color: textColor 
+          <span className="landing-logo-text" style={{
+            fontFamily: "'Syne', sans-serif",
+            fontSize: 22,
+            fontWeight: 800,
+            letterSpacing: '-0.5px',
+            color: textColor,
+            whiteSpace: 'nowrap'
           }}>
             Meeting<span style={{ color: '#00f0ff' }}>Intelligence</span>
           </span>
