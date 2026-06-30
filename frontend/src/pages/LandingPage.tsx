@@ -8,21 +8,18 @@ export default function LandingPage() {
   const { dark, toggle } = useTheme()
   const { user, signOut } = useSupabaseAuth()
 
-  // On mobile skip the flying animation entirely — it overlaps header buttons
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-
-  const [animationPhase, setAnimationPhase] = useState<'center-hero' | 'center-header' | 'docked-left'>(
-    isMobile ? 'docked-left' : 'center-hero'
-  )
+  const [animationPhase, setAnimationPhase] = useState<'center-hero' | 'center-header' | 'docked-left'>('center-hero')
 
   useEffect(() => {
-    if (isMobile) return // No animation on mobile
     const stage1 = setTimeout(() => setAnimationPhase('center-header'), 600)
     const stage2 = setTimeout(() => setAnimationPhase('docked-left'), 1300)
     return () => { clearTimeout(stage1); clearTimeout(stage2) }
   }, [])
 
-  const shouldShowContent = isMobile || animationPhase !== 'center-hero'
+  // Hero content appears when logo reaches the top
+  const shouldShowContent = animationPhase !== 'center-hero'
+  // Header buttons only appear AFTER logo finishes docking — prevents overlap during animation
+  const shouldShowButtons = animationPhase === 'docked-left'
 
   const features = [
     {
@@ -145,14 +142,14 @@ export default function LandingPage() {
         </div>
 
         {/* Action Controls Toolbar Row */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
           gap: 16,
-          marginLeft: 'auto', // 👈 FIX: Always forces controls row to dock right, regardless of logo position state
-          opacity: shouldShowContent ? 1 : 0,
-          transition: 'opacity 0.3s ease',
-          pointerEvents: shouldShowContent ? 'auto' : 'none'
+          marginLeft: 'auto',
+          opacity: shouldShowButtons ? 1 : 0,
+          transition: 'opacity 0.4s ease',
+          pointerEvents: shouldShowButtons ? 'auto' : 'none'
         }}>
           <button 
             onClick={toggle}
