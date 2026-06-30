@@ -56,6 +56,15 @@
     border-color: rgba(255,255,255,0.06);
   }
 
+  @media (max-width: 767px) {
+    .mobile-menu-btn {
+      display: flex !important;
+    }
+    .glass-sidebar {
+      position: fixed !important;
+    }
+  }
+
   .glass-input {
     width: 100%;
     border-radius: 0.75rem;

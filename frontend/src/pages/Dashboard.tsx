@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth'
 import { useTheme } from '@/App'
-import { Lock } from 'lucide-react'
+import { Lock, Menu } from 'lucide-react'
 import {
   Brain, ArrowLeft, FileText,
   Activity, BarChart3,
@@ -27,6 +27,7 @@ export default function Dashboard() {
   const [selectedMeeting, setSelectedMeeting] = useState<any>(null)
   const [, setLoadingMeetings] = useState(true)
   const [viewMode, setViewMode] = useState<'live' | 'archive'>('live')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const token = session?.access_token || 'demo-token'
 
@@ -118,10 +119,25 @@ export default function Dashboard() {
 ];
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* ── Main Workspace ─────────────────────── */}
       <main style={{ flex: 1, overflowY: 'auto', padding: 24, backgroundColor: dark ? '#06060c' : '#f8fafc' }}>
+
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={() => setSidebarOpen(true)}
+          style={{
+            display: 'none',
+            position: 'fixed', top: 16, left: 16, zIndex: 30,
+            background: dark ? 'rgba(255,255,255,0.08)' : '#ffffff',
+            border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+            borderRadius: 10, padding: '8px 10px', cursor: 'pointer',
+          }}
+          className="mobile-menu-btn"
+        >
+          <Menu size={20} color={dark ? '#94a3b8' : '#334155'} />
+        </button>
 
         {/* ── LIVE / ARCHIVE CAPTURE ───────────────────── */}
         {tab === 'record' && (
