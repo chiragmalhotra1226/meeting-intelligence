@@ -183,6 +183,16 @@ html { scroll-behavior: smooth; }
     font-size: 15px !important;
   }
 
+  /* Logo: hide full text, show short "MI" on mobile */
+  .logo-full { display: none !important; }
+  .logo-short { display: inline !important; }
+
+  /* Compact Sign In button on mobile */
+  .landing-signin-btn {
+    padding: 7px 14px !important;
+    font-size: 13px !important;
+  }
+
   /* Form rows stack vertically on mobile */
   .mobile-stack {
     flex-direction: column !important;

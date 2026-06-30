@@ -7,30 +7,22 @@ export default function LandingPage() {
   const navigate = useNavigate()
   const { dark, toggle } = useTheme()
   const { user, signOut } = useSupabaseAuth()
-  
-  // 🎬 Track the exact cinematic animation phases
-  // 'center-hero' -> 'center-header' -> 'docked-left'
-  const [animationPhase, setAnimationPhase] = useState<'center-hero' | 'center-header' | 'docked-left'>('center-hero')
+
+  // On mobile skip the flying animation entirely — it overlaps header buttons
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
+  const [animationPhase, setAnimationPhase] = useState<'center-hero' | 'center-header' | 'docked-left'>(
+    isMobile ? 'docked-left' : 'center-hero'
+  )
 
   useEffect(() => {
-    // Phase 1: Wait 600ms centered, then quickly shoot up to the top header center
-    const stage1 = setTimeout(() => {
-      setAnimationPhase('center-header')
-    }, 600)
-
-    // Phase 2: Wait 700ms at the top center, then slide smoothly over to its left home
-    const stage2 = setTimeout(() => {
-      setAnimationPhase('docked-left')
-    }, 1300)
-
-    return () => {
-      clearTimeout(stage1)
-      clearTimeout(stage2)
-    }
+    if (isMobile) return // No animation on mobile
+    const stage1 = setTimeout(() => setAnimationPhase('center-header'), 600)
+    const stage2 = setTimeout(() => setAnimationPhase('docked-left'), 1300)
+    return () => { clearTimeout(stage1); clearTimeout(stage2) }
   }, [])
 
-  // The entire page context reveals IMMEDIATELY when it hits the top header center!
-  const shouldShowContent = animationPhase !== 'center-hero'
+  const shouldShowContent = isMobile || animationPhase !== 'center-hero'
 
   const features = [
     {
@@ -137,15 +129,18 @@ export default function LandingPage() {
           }}>
             <Sparkles size={18} color="#fff" />
           </div>
-          <span className="landing-logo-text" style={{
-            fontFamily: "'Syne', sans-serif",
-            fontSize: 22,
-            fontWeight: 800,
-            letterSpacing: '-0.5px',
-            color: textColor,
-            whiteSpace: 'nowrap'
+          {/* Full text on desktop, short on mobile */}
+          <span className="logo-full" style={{
+            fontFamily: "'Syne', sans-serif", fontSize: 22, fontWeight: 800,
+            letterSpacing: '-0.5px', color: textColor, whiteSpace: 'nowrap'
           }}>
             Meeting<span style={{ color: '#00f0ff' }}>Intelligence</span>
+          </span>
+          <span className="logo-short" style={{
+            fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800,
+            color: '#00f0ff', display: 'none'
+          }}>
+            MI
           </span>
         </div>
 
@@ -174,25 +169,27 @@ export default function LandingPage() {
           </button>
 
           {user ? (
-            <button 
-              onClick={async () => { await signOut(); navigate('/login') }} 
+            <button
+              className="landing-signin-btn"
+              onClick={async () => { await signOut(); navigate('/login') }}
               style={{
-                background: 'linear-gradient(135deg, rgba(0,240,255,0.15), rgba(139,92,246,0.15))', 
+                background: 'linear-gradient(135deg, rgba(0,240,255,0.15), rgba(139,92,246,0.15))',
                 border: `1px solid ${dark ? 'rgba(0,240,255,0.3)' : 'rgba(0,240,255,0.5)'}`,
                 color: '#00f0ff', padding: '8px 20px', borderRadius: '10px', fontSize: '14px',
-                fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+                fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap'
               }}
             >
               Sign Out
             </button>
           ) : (
-            <button 
-              onClick={() => navigate('/login')} 
+            <button
+              className="landing-signin-btn"
+              onClick={() => navigate('/login')}
               style={{
-                background: dark ? 'rgba(255,255,255,0.03)' : '#0f172a', 
+                background: dark ? 'rgba(255,255,255,0.03)' : '#0f172a',
                 border: `1px solid ${borderColor}`,
                 color: '#fff', padding: '8px 20px', borderRadius: '10px', fontSize: '14px',
-                fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s'
+                fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap'
               }}
             >
               Sign In
